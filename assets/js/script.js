@@ -10,6 +10,8 @@ const progressionBar = document.querySelectorAll('.bar');
 
 // Sound
 let rire = new Audio('../assets/sound/rire.mp3')
+let smoke = new Audio('../assets/sound/smoke.mp3')
+let sleep = new Audio('../assets/sound/sleep.mp3')
 
 // Select
 const foodSelect = document.querySelector('#foodSelect');
@@ -66,7 +68,9 @@ setInterval(() => {
     progressionBar[1].style.height = `${risitas.drink}%`;
     progressionBar[2].style.height = `${risitas.sleep}%`;
     progressionBar[3].style.height = `${risitas.satisfaction}%`;
-}, 2000);
+}, 5000);
+
+
 
 
 // Refreshing Object Function
@@ -80,15 +84,14 @@ function refreshingObject() {
 }
 
 
-
 // Food Object 
 foodSelect.addEventListener('change', () => {
     if (foodSelect.selectedIndex === 1) { // Burger
         validBtn[0].addEventListener('click', () => {
-            risitas.food += 30;
-            risitas.drink -= 15;
-            risitas.sleep -= 10;
-            risitas.satisfaction += 15;
+            risitas.food += 15;
+            risitas.drink -= 5;
+            risitas.sleep -= 5;
+            risitas.satisfaction += 10;
             refreshingObject();
         })
     }
@@ -96,34 +99,34 @@ foodSelect.addEventListener('change', () => {
         validBtn[0].addEventListener('click', () => {
             risitas.food += 20;
             risitas.drink -= 10;
-            risitas.sleep -= 15;
-            risitas.satisfaction += 15;
+            risitas.sleep -= 5;
+            risitas.satisfaction += 10;
             refreshingObject();
         })
     }
     else if (foodSelect.selectedIndex === 3) { // Kebab
         validBtn[0].addEventListener('click', () => {
-            risitas.food += 30;
-            risitas.drink -= 15;
-            risitas.sleep -= 20;
+            risitas.food += 10;
+            risitas.drink -= 5;
+            risitas.sleep -= 5;
             risitas.satisfaction += 10;
             refreshingObject();
         })
     }
     else if (foodSelect.selectedIndex === 4) { // Pizza
         validBtn[0].addEventListener('click', () => {
-            risitas.food += 40;
-            risitas.drink -= 20;
-            risitas.sleep -= 30;
-            risitas.satisfaction += 5;
+            risitas.food += 15;
+            risitas.drink -= 10;
+            risitas.sleep -= 10;
+            risitas.satisfaction += 10;
             refreshingObject();
         })
     }
     else if (foodSelect.selectedIndex === 5) { // Bouillie qui nourrit
         validBtn[0].addEventListener('click', () => {
-            risitas.food += 55;
+            risitas.food += 25;
             risitas.drink -= 10;
-            risitas.sleep -= 25;
+            risitas.sleep -= 10;
             risitas.satisfaction += 0;
             refreshingObject();
         })
@@ -134,37 +137,37 @@ foodSelect.addEventListener('change', () => {
 drinkSelect.addEventListener('change', () => {
     if (drinkSelect.selectedIndex === 1) { // Eau insalubre
         validBtn[1].addEventListener('click', () => {
-            risitas.food -= 10;
-            risitas.drink -= 20;
-            risitas.sleep -= 15;
-            risitas.satisfaction += 50;
+            risitas.food -= 5;
+            risitas.drink += 20;
+            risitas.sleep -= 5;
+            risitas.satisfaction -= 5;
             refreshingObject();
         })
     }
     else if (drinkSelect.selectedIndex === 2) { // Coca Eco+
         validBtn[1].addEventListener('click', () => {
             risitas.food += 0;
-            risitas.drink += 25;
-            risitas.sleep += 10;
-            risitas.satisfaction += 10;
+            risitas.drink += 20;
+            risitas.sleep -= 5;
+            risitas.satisfaction += 5;
             refreshingObject();
         })
     }
     else if (drinkSelect.selectedIndex === 3) { // Villageoise
         validBtn[1].addEventListener('click', () => {
-            risitas.food -= 20;
+            risitas.food -= 5;
             risitas.drink += 25;
-            risitas.sleep += 25;
-            risitas.satisfaction += 40;
+            risitas.sleep -= 10;
+            risitas.satisfaction += 20;
             refreshingObject();
         })
     }
     else if (drinkSelect.selectedIndex === 4) { // Maximator
         validBtn[1].addEventListener('click', () => {
             risitas.food -= 10;
-            risitas.drink += 10;
-            risitas.sleep += 40;
-            risitas.satisfaction += 50;
+            risitas.drink += 30;
+            risitas.sleep -= 15;
+            risitas.satisfaction += 25;
             refreshingObject();
         })
     }
@@ -174,32 +177,61 @@ drinkSelect.addEventListener('change', () => {
 sleepSelect.addEventListener('change', () => {
     if (sleepSelect.selectedIndex === 1) { // 1h
         validBtn[2].addEventListener('click', () => {
-            risitas.food -= 10;
-            risitas.drink -= 15;
+            risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/sleep.png)"
+            sleep.play()
+            disabled()
+            risitas.food -= 5;
+            risitas.drink -= 5;
             risitas.sleep += 10;
             risitas.satisfaction += 0;
             refreshingObject();
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/normalRisitas.png)"
+                undisabled()
+                sleep.pause()
+            }, 3000);
         })
     }
     else if (sleepSelect.selectedIndex === 2) { // 3h
         validBtn[2].addEventListener('click', () => {
-            risitas.food -= 20;
-            risitas.drink -= 25;
-            risitas.sleep += 30;
-            risitas.satisfaction -= 10;
+            risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/sleep.png)"
+            sleep.play()
+            disabled()
+            risitas.food -= 10;
+            risitas.drink -= 10;
+            risitas.sleep += 20;
+            risitas.satisfaction += 0;
             refreshingObject();
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/normalRisitas.png)"
+                undisabled()
+                sleep.pause()
+            }, 6000);
         })
     }
     else if (sleepSelect.selectedIndex === 3) { // 6h
         validBtn[2].addEventListener('click', () => {
-            risitas.food -= 20;
-            risitas.drink -= 25;
-            risitas.sleep += 45;
-            risitas.satisfaction -= 20;
+            risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/sleep.png)"
+            sleep.play()
+            disabled()
+            risitas.food -= 15;
+            risitas.drink -= 15;
+            risitas.sleep += 30;
+            risitas.satisfaction += 0;
             refreshingObject();
+            setTimeout(() => {
+                sleep.play()
+            }, 7380);
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/normalRisitas.png)"
+                undisabled()
+                sleep.pause()
+            }, 12000);
         })
     }
 })
+
+
 
 
 
@@ -232,9 +264,19 @@ pBlagueFirst.className = 'pBlagueFirst'
 let pBlagueSecond = document.createElement('p');
 
 playSelect.addEventListener('change', function () {
-
-    if (playSelect.selectedIndex === 1) {         // Blagues
-        validBtn[3].addEventListener('click', function () {
+    validBtn[3].addEventListener('click', function () {
+        if (playSelect.selectedIndex === 1) {         // Blagues
+            disabled()
+            risitasCharacter.style.backgroundImage = "url(../assets/img/risitas/avantRire.png)"
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = " url(../assets/img/risitas/rire.png)"
+                rire.play()
+            }, 1000);
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = " url(../assets/img/risitas/normalRisitas.png)"
+                ContainersBlague.style.display = 'none'
+                undisabled()
+            }, 5500);
             ContainersBlague.style.display = "flex"
             document.querySelector('.mainScreen').appendChild(ContainersBlague);
             ContainersBlague.appendChild(pBlagueFirst);
@@ -242,19 +284,29 @@ playSelect.addEventListener('change', function () {
             ContainersBlague.id = "ContainersBlague";
             pBlagueFirst.textContent = blagueFirst[Math.floor(Math.random() * blagueFirst.length)];
             pBlagueSecond.textContent = blagueSecond[blagueFirst.indexOf(pBlagueFirst.textContent)];
-        })
-    }
+        }
+    })
 })
-console.log(Boolean(validBtn[3]))
-function Blague() {
-}
 
 
 playSelect.addEventListener('change', function () {
-    if (playSelect.selectedIndex === 2) { // Fumer
-        validBtn[3].addEventListener('click', function () {
-        })
-    }
+    validBtn[3].addEventListener('click', function () {
+        if (playSelect.selectedIndex === 2) {
+            disabled()
+            risitasCharacter.style.backgroundImage = 'url(../assets/img/risitas/roule.png)'
+            smoke.play()
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = 'url(../assets/img/risitas/fume.png)'
+            }, 5000);
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = 'url(../assets/img/risitas/def.png)'
+                undisabled()
+            }, 12000);
+            setTimeout(() => {
+                risitasCharacter.style.backgroundImage = " url(../assets/img/risitas/normalRisitas.png)"
+            }, 30000);
+        }
+    })
 })
 
 function disabled() {
@@ -268,4 +320,5 @@ function undisabled() {
         validBtn[i].disabled = false
         validBtn[i].classList.remove('wait');
     }
-}   
+}
+
